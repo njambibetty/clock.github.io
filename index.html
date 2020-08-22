@@ -1,0 +1,78 @@
+<html><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Clock v1.0</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/main.css">
+ </head>
+ <body>
+  <section class="clock-container">
+   <div class="hour">
+     1
+   </div>
+   <div class="hour">
+     2
+   </div>
+   <div class="hour">
+     3
+   </div>
+   <div class="hour">
+     4
+   </div>
+   <div class="hour">
+     5
+   </div>
+   <div class="hour">
+     6
+   </div>
+   <div class="hour">
+     7
+   </div>
+   <div class="hour">
+     8
+   </div>
+   <div class="hour">
+     9
+   </div>
+   <div class="hour">
+     10
+   </div>
+   <div class="hour">
+     11
+   </div>
+   <div class="hour">
+     12
+   </div>
+   <div class="digital-clock-time"></div>
+   <div class="hour-hand"></div>
+   <div class="min-hand"></div>
+   <div class="sec-hand"></div>
+   <div class="mid-point"></div>
+   
+  </section>
+   
+  <script>
+   
+        let hourHand = document.querySelector('.hour-hand');
+        let minHand = document.querySelector('.min-hand');
+        let secHand = document.querySelector('.sec-hand');
+        let digitalClock = document.querySelector('.digital-clock-time');
+
+        let updateTime = () => {
+            let d = new Date();
+            let sec = d.getSeconds();
+            let min = d.getMinutes();
+            let hour = d.getHours() % 12;
+            digitalClock.innerText = `${('00' + hour).substr(-2)}:${('00' + min).substr(-2)}:${('00' + sec).substr(-2)}`;
+            min = min + sec / 60;
+            hour = hour + min / 60;
+            secHand.style.transform = `translate3d(13vmin, 0, 8px) rotateZ(${6 * sec - 90}deg)`;
+            minHand.style.transform = `translate3d(11vmin, 0, 6px) rotateZ(${6 * min - 90}deg)`;
+            hourHand.style.transform = `translate3d(9vmin, 0, 4px) rotateZ(${30 * hour - 90}deg)`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+
+    </script>
+ 
+</body></html>
